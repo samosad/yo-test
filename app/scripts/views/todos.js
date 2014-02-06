@@ -7,7 +7,7 @@ yoTest.Views = yoTest.Views || {};
 
     yoTest.Views.TodosView = Backbone.View.extend({
 
-				el: '#todo-app',
+        el: '#todo-app',
 
         template: JST['app/scripts/templates/todos.ejs'],
 
@@ -16,7 +16,7 @@ yoTest.Views = yoTest.Views || {};
         },
 
         initialize: function() {
-        	this.render();
+          this.render();
 
           this.listenTo(this.collection, 'add', this.addTodoItem);
           this.listenTo(this.collection, 'reset', this.addAllTodoItems);
@@ -31,28 +31,28 @@ yoTest.Views = yoTest.Views || {};
         },
 
         createTodo: function(e) {
-        	e.preventDefault();
+          e.preventDefault();
 
-        	var title = this.$('#new-todo').val().trim();
+          var title = this.$('#new-todo').val().trim();
 
-        	if (title) {
-        		this.collection.create(new yoTest.Models.TodoModel({
-        			title: title 
-        		}));
+          if (title) {
+            this.collection.create(new yoTest.Models.TodoModel({
+              title: title 
+            }));
 
-        		this.$('#new-todo').val('');
-        	};
+            this.$('#new-todo').val('');
+          };
         },
 
         addTodoItem: function(todo) {
-        	var view = new yoTest.Views.TodosView({
-        		model: todo
-        	});
-        	this.$('ul').append(view.render().el);
+          var view = new yoTest.Views.TodosView({
+            model: todo
+          });
+          this.$('ul').append(view.render().el);
         },
 
         addAllTodoItems: function() {
-        	this.collection.each(this.addTodoItem, this);
+          this.collection.each(this.addTodoItem, this);
         }
 
     });
