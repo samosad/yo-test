@@ -23,12 +23,12 @@ yoTest.Models = yoTest.Models || {};
             });
         },
 
-        validate: function(attrs, options) {
-        },
+        // validate: function(attrs, options) {
+        // },
 
-        parse: function(response, options)  {
-            return response;
-        }
+        // parse: function(response, options)  {
+        //     return response;
+        // }
     });
 
 })();

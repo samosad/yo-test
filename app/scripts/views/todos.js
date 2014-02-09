@@ -2,7 +2,7 @@
 
 yoTest.Views = yoTest.Views || {};
 
-(function () {
+(function() {
     'use strict';
 
     yoTest.Views.TodosView = Backbone.View.extend({
@@ -12,47 +12,47 @@ yoTest.Views = yoTest.Views || {};
         template: JST['app/scripts/templates/todos.ejs'],
 
         events: {
-          'submit': "createTodo"
+            'submit': 'createTodo'
         },
 
         initialize: function() {
-          this.render();
+            this.render();
 
-          this.listenTo(this.collection, 'add', this.addTodoItem);
-          this.listenTo(this.collection, 'reset', this.addAllTodoItems);
+            this.listenTo(this.collection, 'add', this.addTodoItem);
+            this.listenTo(this.collection, 'reset', this.addAllTodoItems);
 
-          this.collection.fetch();
+            this.collection.fetch();
         },
 
         render: function() {
-          this.$el.html(this.template());
+            this.$el.html(this.template());
 
-          return this;
+            return this;
         },
 
         createTodo: function(e) {
-          e.preventDefault();
+            e.preventDefault();
 
-          var title = this.$('#new-todo').val().trim();
+            var title = this.$('#new-todo').val().trim();
 
-          if (title) {
-            this.collection.create(new yoTest.Models.TodoModel({
-              title: title 
-            }));
+            if (title) {
+                this.collection.create(new yoTest.Models.TodoModel({
+                    title: title
+                }));
 
-            this.$('#new-todo').val('');
-          };
+                this.$('#new-todo').val('');
+            }
         },
 
         addTodoItem: function(todo) {
-          var view = new yoTest.Views.TodosView({
-            model: todo
-          });
-          this.$('ul').append(view.render().el);
+            var view = new yoTest.Views.TodoView({
+                model: todo
+            });
+            this.$('ul').append(view.render().el);
         },
 
         addAllTodoItems: function() {
-          this.collection.each(this.addTodoItem, this);
+            this.collection.each(this.addTodoItem, this);
         }
 
     });
